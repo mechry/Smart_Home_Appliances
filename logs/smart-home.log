@@ -1,0 +1,472 @@
+2026-08-22 01:36:08.900 INFO  [main] com.smart.home.SmartHomeApplication - Starting SmartHomeApplication using Java 20.0.2 with PID 3720 (C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances)
+2026-08-22 01:36:08.903 INFO  [main] com.smart.home.SmartHomeApplication - No active profile set, falling back to 1 default profile: "default"
+2026-08-22 01:36:10.399 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-22 01:36:10.507 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 95 ms. Found 4 JPA repository interfaces.
+2026-08-22 01:36:11.811 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-22 01:36:11.840 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-22 01:36:11.841 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2026-08-22 01:36:11.960 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-08-22 01:36:11.961 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2990 ms
+2026-08-22 01:36:12.178 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-22 01:36:12.542 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:smart_home user=SA
+2026-08-22 01:36:12.545 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-22 01:36:12.563 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:smart_home'
+2026-08-22 01:36:12.875 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-22 01:36:12.984 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-08-22 01:36:13.042 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-08-22 01:36:13.494 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-22 01:36:15.187 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-22 01:36:15.306 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 01:36:18.490 INFO  [main] o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-08-22 01:36:18.613 WARN  [main] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-08-22 01:36:18.616 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 01:36:18.619 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-08-22 01:36:18.623 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-08-22 01:36:18.653 INFO  [main] o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-22 01:36:18.682 ERROR [main] o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-08-22 01:50:59.074 INFO  [main] com.smart.home.SmartHomeApplication - Starting SmartHomeApplication v0.0.1-SNAPSHOT using Java 20.0.2 with PID 14308 (C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances\target\smart-home-appliances-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances)
+2026-08-22 01:50:59.087 INFO  [main] com.smart.home.SmartHomeApplication - No active profile set, falling back to 1 default profile: "default"
+2026-08-22 01:51:01.974 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-22 01:51:02.074 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 82 ms. Found 4 JPA repository interfaces.
+2026-08-22 01:51:04.633 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-22 01:51:04.655 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-22 01:51:04.655 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2026-08-22 01:51:04.737 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-08-22 01:51:04.738 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5523 ms
+2026-08-22 01:51:05.186 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-22 01:51:06.048 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:smart_home user=SA
+2026-08-22 01:51:06.051 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-22 01:51:06.085 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:smart_home'
+2026-08-22 01:51:10.095 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-22 01:51:10.303 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-08-22 01:51:10.623 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-08-22 01:51:11.202 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-22 01:51:13.139 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-22 01:51:13.269 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 01:51:17.293 INFO  [main] o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-08-22 01:51:17.486 WARN  [main] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-08-22 01:51:17.492 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 01:51:17.501 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-08-22 01:51:17.520 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-08-22 01:51:17.574 INFO  [main] o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-22 01:51:17.614 ERROR [main] o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-08-22 01:58:12.469 INFO  [main] com.smart.home.SmartHomeApplication - Starting SmartHomeApplication v0.0.1-SNAPSHOT using Java 20.0.2 with PID 6672 (C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances\target\smart-home-appliances-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances)
+2026-08-22 01:58:12.472 INFO  [main] com.smart.home.SmartHomeApplication - No active profile set, falling back to 1 default profile: "default"
+2026-08-22 01:58:14.434 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-22 01:58:14.511 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 64 ms. Found 4 JPA repository interfaces.
+2026-08-22 01:58:15.834 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-22 01:58:15.853 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-22 01:58:15.853 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2026-08-22 01:58:15.905 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-08-22 01:58:15.906 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3320 ms
+2026-08-22 01:58:16.153 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-22 01:58:16.532 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:smart_home user=SA
+2026-08-22 01:58:16.536 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-22 01:58:16.554 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:smart_home'
+2026-08-22 01:58:17.113 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-22 01:58:17.449 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-08-22 01:58:17.533 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-08-22 01:58:18.264 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-22 01:58:20.189 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-22 01:58:20.275 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 01:58:24.803 INFO  [main] o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-08-22 01:58:24.995 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-08-22 01:58:25.040 INFO  [main] com.smart.home.SmartHomeApplication - Started SmartHomeApplication in 13.517 seconds (process running for 17.34)
+2026-08-22 01:58:55.945 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-22 01:58:55.946 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-08-22 01:58:55.947 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-08-22 02:10:18.188 INFO  [http-nio-8080-exec-2] com.smart.home.service.RoomService - Creating room with name Living Room
+2026-08-22 02:14:59.767 INFO  [http-nio-8080-exec-7] c.s.h.service.AirConditionerService - Created air conditioner AC1 in room Living Room
+2026-08-22 02:14:59.771 WARN  [http-nio-8080-exec-7] o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23502, SQLState: 23502
+2026-08-22 02:14:59.772 ERROR [http-nio-8080-exec-7] o.h.e.jdbc.spi.SqlExceptionHelper - NULL not allowed for column "SPEED"; SQL statement:
+insert into appliances (name,power_state,room_id,thermostat_mode,appliance_type,id) values (?,?,?,?,'AIR_CONDITIONER',default) [23502-224]
+2026-08-22 02:15:53.050 INFO  [http-nio-8080-exec-9] c.s.h.service.AirConditionerService - Created air conditioner AC1 in room Living Room
+2026-08-22 02:15:53.052 WARN  [http-nio-8080-exec-9] o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23502, SQLState: 23502
+2026-08-22 02:15:53.052 ERROR [http-nio-8080-exec-9] o.h.e.jdbc.spi.SqlExceptionHelper - NULL not allowed for column "SPEED"; SQL statement:
+insert into appliances (name,power_state,room_id,thermostat_mode,appliance_type,id) values (?,?,?,?,'AIR_CONDITIONER',default) [23502-224]
+2026-08-22 02:17:52.346 INFO  [http-nio-8080-exec-1] c.s.h.service.AirConditionerService - Created air conditioner AC1 in room Living Room
+2026-08-22 02:17:52.348 WARN  [http-nio-8080-exec-1] o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23502, SQLState: 23502
+2026-08-22 02:17:52.349 ERROR [http-nio-8080-exec-1] o.h.e.jdbc.spi.SqlExceptionHelper - NULL not allowed for column "SPEED"; SQL statement:
+insert into appliances (name,power_state,room_id,thermostat_mode,appliance_type,id) values (?,?,?,?,'AIR_CONDITIONER',default) [23502-224]
+2026-08-22 02:20:30.881 INFO  [http-nio-8080-exec-2] c.s.h.service.AirConditionerService - Created air conditioner AC1 in room Living Room
+2026-08-22 02:20:30.883 WARN  [http-nio-8080-exec-2] o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23502, SQLState: 23502
+2026-08-22 02:20:30.884 ERROR [http-nio-8080-exec-2] o.h.e.jdbc.spi.SqlExceptionHelper - NULL not allowed for column "SPEED"; SQL statement:
+insert into appliances (name,power_state,room_id,thermostat_mode,appliance_type,id) values (?,?,?,?,'AIR_CONDITIONER',default) [23502-224]
+2026-08-22 02:20:41.292 INFO  [http-nio-8080-exec-3] c.s.h.service.AirConditionerService - Created air conditioner AC1 in room Living Room
+2026-08-22 02:20:41.294 WARN  [http-nio-8080-exec-3] o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23502, SQLState: 23502
+2026-08-22 02:20:41.294 ERROR [http-nio-8080-exec-3] o.h.e.jdbc.spi.SqlExceptionHelper - NULL not allowed for column "SPEED"; SQL statement:
+insert into appliances (name,power_state,room_id,thermostat_mode,appliance_type,id) values (?,?,?,?,'AIR_CONDITIONER',default) [23502-224]
+2026-08-22 02:21:42.443 INFO  [http-nio-8080-exec-5] c.s.h.service.AirConditionerService - Created air conditioner COOL in room Living Room
+2026-08-22 02:21:42.446 WARN  [http-nio-8080-exec-5] o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23502, SQLState: 23502
+2026-08-22 02:21:42.446 ERROR [http-nio-8080-exec-5] o.h.e.jdbc.spi.SqlExceptionHelper - NULL not allowed for column "SPEED"; SQL statement:
+insert into appliances (name,power_state,room_id,thermostat_mode,appliance_type,id) values (?,?,?,?,'AIR_CONDITIONER',default) [23502-224]
+2026-08-22 02:22:29.803 INFO  [http-nio-8080-exec-6] c.s.h.service.AirConditionerService - Created air conditioner COOL in room Living Room
+2026-08-22 02:22:29.806 WARN  [http-nio-8080-exec-6] o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23502, SQLState: 23502
+2026-08-22 02:22:29.806 ERROR [http-nio-8080-exec-6] o.h.e.jdbc.spi.SqlExceptionHelper - NULL not allowed for column "SPEED"; SQL statement:
+insert into appliances (name,power_state,room_id,thermostat_mode,appliance_type,id) values (?,?,?,?,'AIR_CONDITIONER',default) [23502-224]
+2026-08-22 02:29:19.393 INFO  [main] com.smart.home.SmartHomeApplication - Starting SmartHomeApplication using Java 21.0.12 with PID 16652 (C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances)
+2026-08-22 02:29:19.400 INFO  [main] com.smart.home.SmartHomeApplication - No active profile set, falling back to 1 default profile: "default"
+2026-08-22 02:29:21.392 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-22 02:29:21.501 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 94 ms. Found 4 JPA repository interfaces.
+2026-08-22 02:29:22.620 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-22 02:29:22.641 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-22 02:29:22.642 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2026-08-22 02:29:22.744 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-08-22 02:29:22.745 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3241 ms
+2026-08-22 02:29:23.030 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-22 02:29:23.926 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:smart_home user=SA
+2026-08-22 02:29:23.932 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-22 02:29:23.968 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:smart_home'
+2026-08-22 02:29:24.276 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-22 02:29:24.417 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-08-22 02:29:24.484 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-08-22 02:29:25.331 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-22 02:29:27.748 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-22 02:29:27.862 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 02:29:29.717 INFO  [main] o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-08-22 02:29:29.834 WARN  [main] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-08-22 02:29:29.836 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 02:29:29.839 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-08-22 02:29:29.843 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-08-22 02:29:29.865 INFO  [main] o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-22 02:29:29.888 ERROR [main] o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-08-22 02:30:40.249 INFO  [main] com.smart.home.SmartHomeApplication - Starting SmartHomeApplication using Java 21.0.12 with PID 10764 (C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances)
+2026-08-22 02:30:40.255 INFO  [main] com.smart.home.SmartHomeApplication - No active profile set, falling back to 1 default profile: "default"
+2026-08-22 02:30:41.749 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-22 02:30:41.862 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 90 ms. Found 4 JPA repository interfaces.
+2026-08-22 02:30:42.909 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-22 02:30:42.928 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-22 02:30:42.929 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2026-08-22 02:30:43.020 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-08-22 02:30:43.020 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2684 ms
+2026-08-22 02:30:43.186 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-22 02:30:43.461 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:smart_home user=SA
+2026-08-22 02:30:43.464 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-22 02:30:43.478 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:smart_home'
+2026-08-22 02:30:43.717 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-22 02:30:43.807 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-08-22 02:30:43.850 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-08-22 02:30:44.343 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-22 02:30:45.892 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-22 02:30:45.997 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 02:30:47.546 INFO  [main] o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-08-22 02:30:47.653 WARN  [main] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-08-22 02:30:47.656 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 02:30:47.659 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-08-22 02:30:47.663 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-08-22 02:30:47.683 INFO  [main] o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-22 02:30:47.707 ERROR [main] o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-08-22 02:34:54.352 INFO  [main] com.smart.home.SmartHomeApplication - Starting SmartHomeApplication using Java 21.0.12 with PID 17424 (C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances)
+2026-08-22 02:34:54.356 INFO  [main] com.smart.home.SmartHomeApplication - No active profile set, falling back to 1 default profile: "default"
+2026-08-22 02:34:55.878 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-22 02:34:55.988 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 95 ms. Found 4 JPA repository interfaces.
+2026-08-22 02:34:57.831 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-22 02:34:57.868 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-22 02:34:57.869 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2026-08-22 02:34:58.010 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-08-22 02:34:58.011 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3557 ms
+2026-08-22 02:34:58.327 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-22 02:34:58.775 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:smart_home user=SA
+2026-08-22 02:34:58.780 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-22 02:34:58.802 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:smart_home'
+2026-08-22 02:34:59.197 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-22 02:34:59.385 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-08-22 02:34:59.484 INFO  [main] com.smart.home.SmartHomeApplication - Starting SmartHomeApplication using Java 21.0.12 with PID 12036 (C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances)
+2026-08-22 02:34:59.488 INFO  [main] com.smart.home.SmartHomeApplication - No active profile set, falling back to 1 default profile: "default"
+2026-08-22 02:34:59.515 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-08-22 02:35:00.828 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-22 02:35:01.656 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-22 02:35:01.790 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 118 ms. Found 4 JPA repository interfaces.
+2026-08-22 02:35:03.240 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-22 02:35:03.265 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-22 02:35:03.265 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2026-08-22 02:35:03.278 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-22 02:35:03.400 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-08-22 02:35:03.400 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3723 ms
+2026-08-22 02:35:03.438 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 02:35:03.680 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-22 02:35:04.087 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:smart_home user=SA
+2026-08-22 02:35:04.092 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-22 02:35:04.120 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:smart_home'
+2026-08-22 02:35:04.582 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-22 02:35:04.706 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-08-22 02:35:04.785 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-08-22 02:35:05.451 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-22 02:35:05.937 INFO  [main] o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-08-22 02:35:06.108 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-08-22 02:35:06.135 INFO  [main] com.smart.home.SmartHomeApplication - Started SmartHomeApplication in 12.852 seconds (process running for 13.958)
+2026-08-22 02:35:07.303 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-22 02:35:07.402 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 02:35:09.210 INFO  [main] o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-08-22 02:35:09.354 WARN  [main] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-08-22 02:35:09.357 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 02:35:09.362 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-08-22 02:35:09.385 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-08-22 02:35:09.408 INFO  [main] o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-22 02:35:09.437 ERROR [main] o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-08-22 02:35:15.473 INFO  [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-22 02:35:15.473 INFO  [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-08-22 02:35:15.476 INFO  [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-08-22 02:35:25.038 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 02:35:25.041 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-08-22 02:35:25.044 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-08-22 02:35:36.944 INFO  [main] com.smart.home.SmartHomeApplication - Starting SmartHomeApplication using Java 21.0.12 with PID 12272 (C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances)
+2026-08-22 02:35:36.946 INFO  [main] com.smart.home.SmartHomeApplication - No active profile set, falling back to 1 default profile: "default"
+2026-08-22 02:35:38.206 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-22 02:35:38.269 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 53 ms. Found 4 JPA repository interfaces.
+2026-08-22 02:35:38.992 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-22 02:35:39.007 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-22 02:35:39.008 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2026-08-22 02:35:39.066 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-08-22 02:35:39.066 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2063 ms
+2026-08-22 02:35:39.199 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-22 02:35:39.412 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:smart_home user=SA
+2026-08-22 02:35:39.414 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-22 02:35:39.426 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:smart_home'
+2026-08-22 02:35:39.610 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-22 02:35:39.684 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-08-22 02:35:39.724 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-08-22 02:35:40.099 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-22 02:35:41.452 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-22 02:35:41.522 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 02:35:42.727 INFO  [main] o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-08-22 02:35:42.803 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-08-22 02:35:42.818 INFO  [main] com.smart.home.SmartHomeApplication - Started SmartHomeApplication in 6.618 seconds (process running for 7.155)
+2026-08-22 02:35:42.910 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-22 02:35:42.911 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-08-22 02:35:42.912 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-08-22 02:37:14.712 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 02:37:14.715 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-08-22 02:37:14.718 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-08-22 02:42:49.394 INFO  [main] com.smart.home.SmartHomeApplication - Starting SmartHomeApplication using Java 21.0.12 with PID 18012 (C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances)
+2026-08-22 02:42:49.398 INFO  [main] com.smart.home.SmartHomeApplication - No active profile set, falling back to 1 default profile: "default"
+2026-08-22 02:42:51.211 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-22 02:42:51.318 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 92 ms. Found 4 JPA repository interfaces.
+2026-08-22 02:42:52.612 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-22 02:42:52.643 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-22 02:42:52.644 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2026-08-22 02:42:52.769 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-08-22 02:42:52.770 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3273 ms
+2026-08-22 02:42:53.002 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-22 02:42:53.282 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:smart_home user=SA
+2026-08-22 02:42:53.287 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-22 02:42:53.328 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:smart_home'
+2026-08-22 02:42:53.619 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-22 02:42:53.700 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-08-22 02:42:53.796 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-08-22 02:42:54.383 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-22 02:42:56.303 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-22 02:42:56.398 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 02:42:57.919 INFO  [main] o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-08-22 02:42:58.046 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-08-22 02:42:58.067 INFO  [main] com.smart.home.SmartHomeApplication - Started SmartHomeApplication in 9.983 seconds (process running for 11.061)
+2026-08-22 02:43:43.433 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 02:43:43.437 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-08-22 02:43:43.442 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-08-22 02:46:39.338 INFO  [main] com.smart.home.SmartHomeApplication - Starting SmartHomeApplication using Java 21.0.12 with PID 6776 (C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances)
+2026-08-22 02:46:39.343 INFO  [main] com.smart.home.SmartHomeApplication - No active profile set, falling back to 1 default profile: "default"
+2026-08-22 02:46:40.895 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-22 02:46:41.021 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 102 ms. Found 4 JPA repository interfaces.
+2026-08-22 02:46:42.263 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-22 02:46:42.299 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-22 02:46:42.300 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2026-08-22 02:46:42.399 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-08-22 02:46:42.399 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2980 ms
+2026-08-22 02:46:42.618 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-22 02:46:42.899 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:smart_home user=SA
+2026-08-22 02:46:42.903 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-22 02:46:42.917 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:smart_home'
+2026-08-22 02:46:43.164 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-22 02:46:43.252 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-08-22 02:46:43.320 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-08-22 02:46:43.921 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-22 02:46:46.567 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-22 02:46:46.748 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 02:46:49.426 INFO  [main] o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-08-22 02:46:49.600 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-08-22 02:46:49.632 INFO  [main] com.smart.home.SmartHomeApplication - Started SmartHomeApplication in 11.411 seconds (process running for 12.5)
+2026-08-22 02:48:32.201 INFO  [http-nio-8080-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-22 02:48:32.202 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-08-22 02:48:32.206 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-08-22 02:48:32.421 INFO  [http-nio-8080-exec-5] com.smart.home.service.RoomService - Creating room with name Living Room
+2026-08-22 02:50:54.742 INFO  [http-nio-8080-exec-8] c.s.h.service.AirConditionerService - Created air conditioner ac in room Living Room
+2026-08-22 02:50:54.746 WARN  [http-nio-8080-exec-8] o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23502, SQLState: 23502
+2026-08-22 02:50:54.746 ERROR [http-nio-8080-exec-8] o.h.e.jdbc.spi.SqlExceptionHelper - NULL not allowed for column "SPEED"; SQL statement:
+insert into appliances (name,power_state,room_id,thermostat_mode,appliance_type,id) values (?,?,?,?,'AIR_CONDITIONER',default) [23502-224]
+2026-08-22 02:52:37.329 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=53s695ms926µs400ns).
+2026-08-22 02:52:37.341 INFO  [http-nio-8080-exec-5] c.s.h.service.AirConditionerService - Created air conditioner ac in room Living Room
+2026-08-22 02:53:04.926 WARN  [http-nio-8080-exec-5] o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23502, SQLState: 23502
+2026-08-22 02:53:04.927 ERROR [http-nio-8080-exec-5] o.h.e.jdbc.spi.SqlExceptionHelper - NULL not allowed for column "SPEED"; SQL statement:
+insert into appliances (name,power_state,room_id,thermostat_mode,appliance_type,id) values (?,?,?,?,'AIR_CONDITIONER',default) [23502-224]
+2026-08-22 03:03:29.428 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 03:03:29.434 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-08-22 03:03:29.440 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-08-22 12:12:21.204 INFO  [main] com.smart.home.SmartHomeApplication - Starting SmartHomeApplication using Java 21.0.12 with PID 16508 (C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances)
+2026-08-22 12:12:21.208 INFO  [main] com.smart.home.SmartHomeApplication - No active profile set, falling back to 1 default profile: "default"
+2026-08-22 12:12:23.849 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-22 12:12:23.972 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 106 ms. Found 4 JPA repository interfaces.
+2026-08-22 12:12:25.535 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-22 12:12:25.561 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-22 12:12:25.562 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2026-08-22 12:12:25.703 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-08-22 12:12:25.703 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4392 ms
+2026-08-22 12:12:25.971 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-22 12:12:26.384 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:smart_home user=SA
+2026-08-22 12:12:26.387 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-22 12:12:26.408 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:smart_home'
+2026-08-22 12:12:26.764 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-22 12:12:26.900 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-08-22 12:12:27.000 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-08-22 12:12:27.703 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-22 12:12:29.940 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-22 12:12:30.058 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 12:12:32.040 INFO  [main] o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-08-22 12:12:32.207 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-08-22 12:12:32.240 INFO  [main] com.smart.home.SmartHomeApplication - Started SmartHomeApplication in 12.282 seconds (process running for 15.259)
+2026-08-22 12:15:10.994 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-22 12:15:10.994 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-08-22 12:15:10.997 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-08-22 12:15:11.221 INFO  [http-nio-8080-exec-1] com.smart.home.service.RoomService - Creating room with name Living Room
+2026-08-22 12:15:41.468 INFO  [http-nio-8080-exec-2] c.s.h.service.AirConditionerService - Created air conditioner ac in room Living Room
+2026-08-22 12:21:35.832 INFO  [http-nio-8080-exec-2] com.smart.home.service.LightService - Created light light in room Living Room
+2026-08-22 12:22:21.237 INFO  [http-nio-8080-exec-3] com.smart.home.service.FanService - Created fan fan in room Living Room
+2026-08-22 12:24:29.494 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 12:24:29.499 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-08-22 12:24:29.506 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-08-22 12:24:40.126 INFO  [main] com.smart.home.SmartHomeApplication - Starting SmartHomeApplication using Java 21.0.12 with PID 16540 (C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances)
+2026-08-22 12:24:40.130 INFO  [main] com.smart.home.SmartHomeApplication - No active profile set, falling back to 1 default profile: "default"
+2026-08-22 12:24:41.715 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-22 12:24:41.831 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 99 ms. Found 4 JPA repository interfaces.
+2026-08-22 12:24:42.877 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-22 12:24:42.895 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-22 12:24:42.896 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2026-08-22 12:24:42.986 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-08-22 12:24:42.987 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2757 ms
+2026-08-22 12:24:43.160 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-22 12:24:43.436 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:smart_home user=SA
+2026-08-22 12:24:43.439 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-22 12:24:43.453 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:smart_home'
+2026-08-22 12:24:43.730 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-22 12:24:43.807 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-08-22 12:24:43.860 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-08-22 12:24:44.352 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-22 12:24:45.954 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-22 12:24:46.072 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 12:24:47.726 INFO  [main] o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-08-22 12:24:47.858 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-08-22 12:24:47.879 INFO  [main] com.smart.home.SmartHomeApplication - Started SmartHomeApplication in 8.844 seconds (process running for 9.823)
+2026-08-22 12:26:34.782 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-22 12:26:34.782 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-08-22 12:26:34.785 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-08-22 12:26:35.005 INFO  [http-nio-8080-exec-1] com.smart.home.service.RoomService - Creating room with name Living Room
+2026-08-22 12:27:03.868 INFO  [http-nio-8080-exec-2] c.s.h.service.AirConditionerService - Created air conditioner ac in room Living Room
+2026-08-22 12:29:09.047 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 12:29:09.050 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-08-22 12:29:09.054 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-08-22 13:22:58.737 INFO  [main] com.smart.home.SmartHomeApplication - Starting SmartHomeApplication using Java 21.0.12 with PID 7496 (C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances)
+2026-08-22 13:22:58.743 INFO  [main] com.smart.home.SmartHomeApplication - No active profile set, falling back to 1 default profile: "default"
+2026-08-22 13:23:00.530 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-22 13:23:00.618 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 77 ms. Found 4 JPA repository interfaces.
+2026-08-22 13:23:01.856 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-22 13:23:01.876 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-22 13:23:01.876 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2026-08-22 13:23:01.980 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-08-22 13:23:01.981 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3103 ms
+2026-08-22 13:23:02.173 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-22 13:23:02.446 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:smart_home user=SA
+2026-08-22 13:23:02.449 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-22 13:23:02.464 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:smart_home'
+2026-08-22 13:23:02.732 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-22 13:23:02.821 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-08-22 13:23:02.865 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-08-22 13:23:03.395 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-22 13:23:04.934 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-22 13:23:05.053 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 13:23:06.643 INFO  [main] o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-08-22 13:23:06.801 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-08-22 13:23:06.850 INFO  [main] com.smart.home.SmartHomeApplication - Started SmartHomeApplication in 9.129 seconds (process running for 10.072)
+2026-08-22 13:24:22.140 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-22 13:24:22.141 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-08-22 13:24:22.143 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-08-22 13:24:22.373 INFO  [http-nio-8080-exec-1] com.smart.home.service.RoomService - Creating room with name Living Room
+2026-08-22 13:24:54.765 INFO  [http-nio-8080-exec-2] com.smart.home.service.FanService - Created fan fan in room Living Room
+2026-08-22 13:27:51.096 WARN  [http-nio-8080-exec-3] o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2026-08-22 13:29:25.966 WARN  [http-nio-8080-exec-6] o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2026-08-22 13:31:11.589 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 13:31:11.591 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-08-22 13:31:11.596 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

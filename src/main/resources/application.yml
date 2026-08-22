@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:smart_home;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  messages:
+    basename: messages
+    encoding: UTF-8
+
+app:
+  maintenance:
+    timezone: America/New_York
+
+logging:
+  file:
+    name: logs/smart-home.log
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
+      max-history: 30
+      clean-history-on-start: true
+  level:
+    root: INFO
+    com.smart.home: INFO
