@@ -234,8 +234,6 @@ This project was developed with assistance from AI (Cascade) for the following a
 
 ### Analysis and Planning
 - **Requirements analysis**: Interpreted project requirements for a room-based smart home appliance controller
-- **Architecture design**: Designed the layered architecture (Controller, Service, Repository, Domain, Validation, Scheduler)
-
 ### Development
 - **Domain model creation**: Created entity classes (Room, Appliance, Light, Fan, AirConditioner) with proper relationships
 - **Repository layer**: Configured Spring Data JPA repositories for data access
