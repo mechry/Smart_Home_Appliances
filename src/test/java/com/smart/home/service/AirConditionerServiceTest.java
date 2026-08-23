@@ -22,6 +22,8 @@ class AirConditionerServiceTest {
         AirConditionerRepository airConditionerRepository = Mockito.mock(AirConditionerRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Living Room");
         AirConditionerRequest request = new AirConditionerRequest("AC Unit", 1L);
@@ -30,7 +32,7 @@ class AirConditionerServiceTest {
         Mockito.when(roomService.getRoomById(1L)).thenReturn(room);
         Mockito.when(airConditionerRepository.save(Mockito.any(AirConditioner.class))).thenReturn(saved);
 
-        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource);
+        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource, lockManager, eventPublisher);
         AirConditioner result = svc.createAirConditioner(request);
 
         assertThat(result.getName()).isEqualTo("AC Unit");
@@ -41,6 +43,8 @@ class AirConditionerServiceTest {
         AirConditionerRepository airConditionerRepository = Mockito.mock(AirConditionerRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         List<AirConditioner> airConditioners = List.of(
                 new AirConditioner("AC1", new Room("R1")),
@@ -48,7 +52,7 @@ class AirConditionerServiceTest {
         );
         Mockito.when(airConditionerRepository.findAll()).thenReturn(airConditioners);
 
-        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource);
+        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource, lockManager, eventPublisher);
         assertThat(svc.getAllAirConditioners()).hasSize(2)
                 .extracting(AirConditioner::getName)
                 .containsExactly("AC1", "AC2");
@@ -59,6 +63,8 @@ class AirConditionerServiceTest {
         AirConditionerRepository airConditionerRepository = Mockito.mock(AirConditionerRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Bedroom");
         List<AirConditioner> airConditioners = List.of(new AirConditioner("Bedroom AC", room));
@@ -66,7 +72,7 @@ class AirConditionerServiceTest {
         Mockito.when(roomService.getRoomById(5L)).thenReturn(room);
         Mockito.when(airConditionerRepository.findByRoomId(5L)).thenReturn(airConditioners);
 
-        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource);
+        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource, lockManager, eventPublisher);
         assertThat(svc.getAirConditionersByRoom(5L)).hasSize(1)
                 .extracting(AirConditioner::getName)
                 .containsExactly("Bedroom AC");
@@ -77,11 +83,13 @@ class AirConditionerServiceTest {
         AirConditionerRepository airConditionerRepository = Mockito.mock(AirConditionerRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         AirConditioner airConditioner = new AirConditioner("Office AC", new Room("Office"));
         Mockito.when(airConditionerRepository.findById(3L)).thenReturn(Optional.of(airConditioner));
 
-        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource);
+        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource, lockManager, eventPublisher);
         assertThat(svc.getAirConditioner(3L)).isEqualTo(airConditioner);
     }
 
@@ -90,6 +98,8 @@ class AirConditionerServiceTest {
         AirConditionerRepository airConditionerRepository = Mockito.mock(AirConditionerRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Mockito.when(airConditionerRepository.findById(999L)).thenReturn(Optional.empty());
         Mockito.when(messageSource.getMessage(
@@ -99,7 +109,7 @@ class AirConditionerServiceTest {
                 Mockito.any()
         )).thenReturn("Air conditioner not found with id 999");
 
-        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource);
+        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource, lockManager, eventPublisher);
 
         assertThatThrownBy(() -> svc.getAirConditioner(999L))
                 .isInstanceOf(ResourceNotFoundException.class)
@@ -111,13 +121,16 @@ class AirConditionerServiceTest {
         AirConditionerRepository airConditionerRepository = Mockito.mock(AirConditionerRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Hall");
         AirConditioner airConditioner = new AirConditioner("Hall AC", room);
         Mockito.when(airConditionerRepository.findById(7L)).thenReturn(Optional.of(airConditioner));
         Mockito.when(airConditionerRepository.save(Mockito.any(AirConditioner.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.eq(7L), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource);
+        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource, lockManager, eventPublisher);
         AirConditioner res = svc.turnOn(7L);
 
         assertThat(res.getPowerState()).isEqualTo(PowerState.ON);
@@ -129,6 +142,8 @@ class AirConditionerServiceTest {
         AirConditionerRepository airConditionerRepository = Mockito.mock(AirConditionerRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Hall");
         AirConditioner airConditioner = new AirConditioner("Hall AC", room);
@@ -136,8 +151,9 @@ class AirConditionerServiceTest {
 
         Mockito.when(airConditionerRepository.findById(8L)).thenReturn(Optional.of(airConditioner));
         Mockito.when(airConditionerRepository.save(Mockito.any(AirConditioner.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.eq(8L), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource);
+        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource, lockManager, eventPublisher);
         AirConditioner res = svc.turnOff(8L);
 
         assertThat(res.getPowerState()).isEqualTo(PowerState.OFF);
@@ -149,6 +165,8 @@ class AirConditionerServiceTest {
         AirConditionerRepository airConditionerRepository = Mockito.mock(AirConditionerRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Kitchen");
         AirConditioner airConditioner = new AirConditioner("Kitchen AC", room);
@@ -157,8 +175,9 @@ class AirConditionerServiceTest {
         Mockito.when(roomService.getRoomById(5L)).thenReturn(room);
         Mockito.when(airConditionerRepository.findById(10L)).thenReturn(Optional.of(airConditioner));
         Mockito.when(airConditionerRepository.save(Mockito.any(AirConditioner.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.eq(10L), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource);
+        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource, lockManager, eventPublisher);
         AirConditioner res = svc.turnOnByRoom(5L, 10L);
 
         assertThat(res.getPowerState()).isEqualTo(PowerState.ON);
@@ -170,6 +189,8 @@ class AirConditionerServiceTest {
         AirConditionerRepository airConditionerRepository = Mockito.mock(AirConditionerRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Living Room");
         AirConditioner ac1 = new AirConditioner("AC1", room);
@@ -181,8 +202,9 @@ class AirConditionerServiceTest {
         Mockito.when(roomService.getRoomById(3L)).thenReturn(room);
         Mockito.when(airConditionerRepository.findByRoomId(3L)).thenReturn(airConditioners);
         Mockito.when(airConditionerRepository.save(Mockito.any(AirConditioner.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.anyLong(), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource);
+        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource, lockManager, eventPublisher);
         List<AirConditioner> result = svc.turnOnAllByRoom(3L);
 
         assertThat(result).hasSize(2);
@@ -194,6 +216,8 @@ class AirConditionerServiceTest {
         AirConditionerRepository airConditionerRepository = Mockito.mock(AirConditionerRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Kitchen");
         AirConditioner airConditioner = new AirConditioner("Kitchen AC", room);
@@ -203,8 +227,9 @@ class AirConditionerServiceTest {
         Mockito.when(roomService.getRoomById(5L)).thenReturn(room);
         Mockito.when(airConditionerRepository.findById(10L)).thenReturn(Optional.of(airConditioner));
         Mockito.when(airConditionerRepository.save(Mockito.any(AirConditioner.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.eq(10L), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource);
+        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource, lockManager, eventPublisher);
         AirConditioner res = svc.turnOffByRoom(5L, 10L);
 
         assertThat(res.getPowerState()).isEqualTo(PowerState.OFF);
@@ -216,6 +241,8 @@ class AirConditionerServiceTest {
         AirConditionerRepository airConditionerRepository = Mockito.mock(AirConditionerRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Living Room");
         AirConditioner ac1 = new AirConditioner("AC1", room);
@@ -229,8 +256,9 @@ class AirConditionerServiceTest {
         Mockito.when(roomService.getRoomById(3L)).thenReturn(room);
         Mockito.when(airConditionerRepository.findByRoomId(3L)).thenReturn(airConditioners);
         Mockito.when(airConditionerRepository.save(Mockito.any(AirConditioner.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.anyLong(), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource);
+        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource, lockManager, eventPublisher);
         List<AirConditioner> result = svc.turnOffAllByRoom(3L);
 
         assertThat(result).hasSize(2);
@@ -242,6 +270,8 @@ class AirConditionerServiceTest {
         AirConditionerRepository airConditionerRepository = Mockito.mock(AirConditionerRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Living Room");
         AirConditioner ac1 = new AirConditioner("AC1", room);
@@ -254,9 +284,10 @@ class AirConditionerServiceTest {
 
         Mockito.when(airConditionerRepository.findAll()).thenReturn(airConditioners);
         Mockito.when(airConditionerRepository.save(Mockito.any(AirConditioner.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.anyLong(), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource);
-        svc.shutdownAllAirConditioners();
+        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource, lockManager, eventPublisher);
+        svc.shutdownAll();
 
         assertThat(ac1.getPowerState()).isEqualTo(PowerState.OFF);
         assertThat(ac2.getPowerState()).isEqualTo(PowerState.OFF);
@@ -267,13 +298,15 @@ class AirConditionerServiceTest {
         AirConditionerRepository airConditionerRepository = Mockito.mock(AirConditionerRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Hall");
         AirConditioner airConditioner = new AirConditioner("Hall AC", room);
         Mockito.when(airConditionerRepository.findById(8L)).thenReturn(Optional.of(airConditioner));
         Mockito.doNothing().when(airConditionerRepository).delete(airConditioner);
 
-        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource);
+        AirConditionerService svc = new AirConditionerService(airConditionerRepository, roomService, messageSource, lockManager, eventPublisher);
         svc.deleteAirConditioner(8L);
 
         Mockito.verify(airConditionerRepository).delete(airConditioner);

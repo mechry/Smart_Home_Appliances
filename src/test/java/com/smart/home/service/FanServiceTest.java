@@ -22,6 +22,8 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Living Room");
         FanRequest request = new FanRequest("Ceiling Fan", 1L);
@@ -30,7 +32,7 @@ class FanServiceTest {
         Mockito.when(roomService.getRoomById(1L)).thenReturn(room);
         Mockito.when(fanRepository.save(Mockito.any(Fan.class))).thenReturn(saved);
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
         Fan result = svc.createFan(request);
 
         assertThat(result.getName()).isEqualTo("Ceiling Fan");
@@ -41,6 +43,8 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         List<Fan> fans = List.of(
                 new Fan("Fan1", new Room("R1")),
@@ -48,7 +52,7 @@ class FanServiceTest {
         );
         Mockito.when(fanRepository.findAll()).thenReturn(fans);
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
         assertThat(svc.getAllFans()).hasSize(2)
                 .extracting(Fan::getName)
                 .containsExactly("Fan1", "Fan2");
@@ -59,6 +63,8 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Bedroom");
         List<Fan> fans = List.of(new Fan("Bedroom Fan", room));
@@ -66,7 +72,7 @@ class FanServiceTest {
         Mockito.when(roomService.getRoomById(5L)).thenReturn(room);
         Mockito.when(fanRepository.findByRoomId(5L)).thenReturn(fans);
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
         assertThat(svc.getFansByRoom(5L)).hasSize(1)
                 .extracting(Fan::getName)
                 .containsExactly("Bedroom Fan");
@@ -77,11 +83,13 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Fan fan = new Fan("Office Fan", new Room("Office"));
         Mockito.when(fanRepository.findById(3L)).thenReturn(Optional.of(fan));
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
         assertThat(svc.getFan(3L)).isEqualTo(fan);
     }
 
@@ -90,6 +98,8 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Mockito.when(fanRepository.findById(999L)).thenReturn(Optional.empty());
         Mockito.when(messageSource.getMessage(
@@ -99,7 +109,7 @@ class FanServiceTest {
                 Mockito.any()
         )).thenReturn("Fan not found with id 999");
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
 
         assertThatThrownBy(() -> svc.getFan(999L))
                 .isInstanceOf(ResourceNotFoundException.class)
@@ -111,13 +121,16 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Hall");
         Fan fan = new Fan("Hall Fan", room);
         Mockito.when(fanRepository.findById(7L)).thenReturn(Optional.of(fan));
         Mockito.when(fanRepository.save(Mockito.any(Fan.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.eq(7L), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
         Fan res = svc.turnOn(7L);
 
         assertThat(res.getPowerState()).isEqualTo(PowerState.ON);
@@ -129,6 +142,8 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Hall");
         Fan fan = new Fan("Hall Fan", room);
@@ -136,8 +151,9 @@ class FanServiceTest {
 
         Mockito.when(fanRepository.findById(8L)).thenReturn(Optional.of(fan));
         Mockito.when(fanRepository.save(Mockito.any(Fan.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.eq(8L), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
         Fan res = svc.turnOff(8L);
 
         assertThat(res.getPowerState()).isEqualTo(PowerState.OFF);
@@ -149,6 +165,8 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Living Room");
         Fan fan = new Fan("Living Room Fan", room);
@@ -156,8 +174,9 @@ class FanServiceTest {
 
         Mockito.when(fanRepository.findById(10L)).thenReturn(Optional.of(fan));
         Mockito.when(fanRepository.save(Mockito.any(Fan.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.eq(10L), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
         Fan res = svc.updateFanSpeed(10L, 2);
 
         assertThat(res.getSpeed()).isEqualTo(2);
@@ -169,6 +188,8 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Living Room");
         Fan fan = new Fan("Living Room Fan", room);
@@ -177,8 +198,9 @@ class FanServiceTest {
 
         Mockito.when(fanRepository.findById(10L)).thenReturn(Optional.of(fan));
         Mockito.when(fanRepository.save(Mockito.any(Fan.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.eq(10L), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
         Fan res = svc.updateFanSpeed(10L, 0);
 
         assertThat(res.getSpeed()).isEqualTo(0);
@@ -190,6 +212,8 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Kitchen");
         Fan fan = new Fan("Kitchen Fan", room);
@@ -198,8 +222,9 @@ class FanServiceTest {
         Mockito.when(roomService.getRoomById(5L)).thenReturn(room);
         Mockito.when(fanRepository.findById(10L)).thenReturn(Optional.of(fan));
         Mockito.when(fanRepository.save(Mockito.any(Fan.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.eq(10L), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
         Fan res = svc.updateFanSpeedByRoom(5L, 10L, 2);
 
         assertThat(res.getSpeed()).isEqualTo(2);
@@ -211,6 +236,8 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Kitchen");
         Fan fan = new Fan("Kitchen Fan", room);
@@ -219,8 +246,9 @@ class FanServiceTest {
         Mockito.when(roomService.getRoomById(5L)).thenReturn(room);
         Mockito.when(fanRepository.findById(10L)).thenReturn(Optional.of(fan));
         Mockito.when(fanRepository.save(Mockito.any(Fan.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.eq(10L), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
         Fan res = svc.turnOnByRoom(5L, 10L);
 
         assertThat(res.getPowerState()).isEqualTo(PowerState.ON);
@@ -232,6 +260,8 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Living Room");
         Fan fan1 = new Fan("Fan1", room);
@@ -243,8 +273,9 @@ class FanServiceTest {
         Mockito.when(roomService.getRoomById(3L)).thenReturn(room);
         Mockito.when(fanRepository.findByRoomId(3L)).thenReturn(fans);
         Mockito.when(fanRepository.save(Mockito.any(Fan.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.anyLong(), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
         List<Fan> result = svc.turnOnAllByRoom(3L);
 
         assertThat(result).hasSize(2);
@@ -256,6 +287,8 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Kitchen");
         Fan fan = new Fan("Kitchen Fan", room);
@@ -265,8 +298,9 @@ class FanServiceTest {
         Mockito.when(roomService.getRoomById(5L)).thenReturn(room);
         Mockito.when(fanRepository.findById(10L)).thenReturn(Optional.of(fan));
         Mockito.when(fanRepository.save(Mockito.any(Fan.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.eq(10L), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
         Fan res = svc.turnOffByRoom(5L, 10L);
 
         assertThat(res.getPowerState()).isEqualTo(PowerState.OFF);
@@ -278,6 +312,8 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Living Room");
         Fan fan1 = new Fan("Fan1", room);
@@ -291,8 +327,9 @@ class FanServiceTest {
         Mockito.when(roomService.getRoomById(3L)).thenReturn(room);
         Mockito.when(fanRepository.findByRoomId(3L)).thenReturn(fans);
         Mockito.when(fanRepository.save(Mockito.any(Fan.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.anyLong(), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
         List<Fan> result = svc.turnOffAllByRoom(3L);
 
         assertThat(result).hasSize(2);
@@ -304,6 +341,8 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Living Room");
         Fan fan1 = new Fan("Fan1", room);
@@ -316,9 +355,10 @@ class FanServiceTest {
 
         Mockito.when(fanRepository.findAll()).thenReturn(fans);
         Mockito.when(fanRepository.save(Mockito.any(Fan.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.anyLong(), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
-        svc.shutdownAllFans();
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
+        svc.shutdownAll();
 
         assertThat(fan1.getPowerState()).isEqualTo(PowerState.OFF);
         assertThat(fan2.getPowerState()).isEqualTo(PowerState.OFF);
@@ -329,13 +369,15 @@ class FanServiceTest {
         FanRepository fanRepository = Mockito.mock(FanRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        LockManager lockManager = Mockito.mock(LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Hall");
         Fan fan = new Fan("Ceiling Fan", room);
         Mockito.when(fanRepository.findById(8L)).thenReturn(Optional.of(fan));
         Mockito.doNothing().when(fanRepository).delete(fan);
 
-        FanService svc = new FanService(fanRepository, roomService, messageSource);
+        FanService svc = new FanService(fanRepository, roomService, messageSource, lockManager, eventPublisher);
         svc.deleteFan(8L);
 
         Mockito.verify(fanRepository).delete(fan);

@@ -13,6 +13,54 @@ The application follows a classic layered architecture:
 - **Validation Layer**: Custom validators for cross-field and business rule validation
 - **Scheduler Layer**: Annual maintenance shutdown scheduler
 
+## SOLID Principles Implementation
+
+The project is designed following SOLID principles to ensure maintainability, scalability, and testability:
+
+### Single Responsibility Principle (SRP)
+
+Each class has a single, well-defined responsibility:
+
+- **Controllers**: Handle HTTP requests/responses only (`RoomController`, `LightController`, etc.)
+- **Services**: Contain business logic and orchestration (`RoomService`, `LightService`, etc.)
+- **Repositories**: Handle data access operations (`ApplianceRepository`, `RoomRepository`, etc.)
+- **Validators**: Perform validation logic (`RoomValidator`, `FanValidator`, `AirConditionerValidator`, `LightValidator`)
+- **DTOs**: Transfer data between layers without business logic
+- **Domain Entities**: Encapsulate business state and behavior
+
+### Open/Closed Principle (OCP)
+
+The system is open for extension but closed for modification:
+
+- **AbstractApplianceService**: Provides common appliance operations (CRUD, turn on/off, room-scoped operations) that all appliance services inherit. New appliance types can be added by extending this class without modifying existing code.
+- **Abstract Appliance hierarchy**: `Appliance` is an abstract base class with shared properties. Concrete subclasses (`Light`, `Fan`, `AirConditioner`) extend with device-specific behavior.
+- **Template Method pattern**: `getValidatedAppliance()` is abstract in `AbstractApplianceService`, requiring subclasses to provide their specific validation logic.
+
+### Liskov Substitution Principle (LSP)
+
+Subtypes are substitutable for their base types:
+
+- **Appliance polymorphism**: Any `Light`, `Fan`, or `AirConditioner` can be used where an `Appliance` is expected without breaking the program.
+- **Service polymorphism**: `LightService`, `FanService`, and `AirConditionerService` can be used interchangeably where `AbstractApplianceService<T>` is expected.
+- **Repository interfaces**: All repository implementations adhere to Spring Data JPA interfaces, ensuring consistent behavior.
+
+### Interface Segregation Principle (ISP)
+
+Clients depend only on interfaces they use:
+
+- **ApplianceManager**: Small, focused interface with a single `shutdownAll()` method for maintenance operations.
+- **Specific repository interfaces**: Each entity has its own repository interface (`LightRepository`, `FanRepository`, etc.) rather than a monolithic data access interface.
+- **Validation interfaces**: Validators are separate classes, not forced into a single validation interface with unrelated methods.
+
+### Dependency Inversion Principle (DIP)
+
+High-level modules depend on abstractions, not concretions:
+
+- **Service dependencies**: Services depend on repository interfaces (`ApplianceRepository<T>`) rather than concrete implementations.
+- **Spring injection**: All dependencies are injected via constructor injection, enabling easy testing and swapping of implementations.
+- **MessageSource & EventPublisher**: Services depend on Spring's `MessageSource` and `ApplicationEventPublisher` interfaces for i18n and event publishing, not concrete implementations.
+- **LockManager**: Concurrency control is abstracted behind the `LockManager` interface, allowing different locking strategies (e.g., switching to distributed locks for multi-instance deployments).
+
 ## Design Considerations
 
 ### Domain Model

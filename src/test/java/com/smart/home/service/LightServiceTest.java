@@ -23,6 +23,8 @@ class LightServiceTest {
         LightRepository lightRepository = Mockito.mock(LightRepository.class);
         com.smart.home.service.RoomService roomService = Mockito.mock(com.smart.home.service.RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        com.smart.home.service.LockManager lockManager = Mockito.mock(com.smart.home.service.LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Living Room");
         LightRequest request = new LightRequest("Lamp", 1L);
@@ -31,7 +33,7 @@ class LightServiceTest {
         Mockito.when(roomService.getRoomById(1L)).thenReturn(room);
         Mockito.when(lightRepository.save(Mockito.any(Light.class))).thenReturn(saved);
 
-        LightService svc = new LightService(lightRepository, roomService, messageSource);
+        LightService svc = new LightService(lightRepository, roomService, messageSource, lockManager, eventPublisher);
         Light result = svc.createLight(request);
 
         assertThat(result.getName()).isEqualTo("Lamp");
@@ -42,11 +44,13 @@ class LightServiceTest {
         LightRepository lightRepository = Mockito.mock(LightRepository.class);
         com.smart.home.service.RoomService roomService = Mockito.mock(com.smart.home.service.RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        com.smart.home.service.LockManager lockManager = Mockito.mock(com.smart.home.service.LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         List<Light> lights = List.of(new Light("A", new Room("R1")), new Light("B", new Room("R2")));
         Mockito.when(lightRepository.findAll()).thenReturn(lights);
 
-        LightService svc = new LightService(lightRepository, roomService, messageSource);
+        LightService svc = new LightService(lightRepository, roomService, messageSource, lockManager, eventPublisher);
         assertThat(svc.getAllLights()).hasSize(2).extracting(Light::getName).containsExactly("A", "B");
     }
 
@@ -55,6 +59,8 @@ class LightServiceTest {
         LightRepository lightRepository = Mockito.mock(LightRepository.class);
         com.smart.home.service.RoomService roomService = Mockito.mock(com.smart.home.service.RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        com.smart.home.service.LockManager lockManager = Mockito.mock(com.smart.home.service.LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Kitchen");
         List<Light> lights = List.of(new Light("L1", room));
@@ -62,7 +68,7 @@ class LightServiceTest {
         Mockito.when(roomService.getRoomById(5L)).thenReturn(room);
         Mockito.when(lightRepository.findByRoomId(5L)).thenReturn(lights);
 
-        LightService svc = new LightService(lightRepository, roomService, messageSource);
+        LightService svc = new LightService(lightRepository, roomService, messageSource, lockManager, eventPublisher);
         assertThat(svc.getLightsByRoom(5L)).hasSize(1).extracting(Light::getName).containsExactly("L1");
     }
 
@@ -71,11 +77,13 @@ class LightServiceTest {
         LightRepository lightRepository = Mockito.mock(LightRepository.class);
         com.smart.home.service.RoomService roomService = Mockito.mock(com.smart.home.service.RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        com.smart.home.service.LockManager lockManager = Mockito.mock(com.smart.home.service.LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Light light = new Light("Desk", new Room("Office"));
         Mockito.when(lightRepository.findById(3L)).thenReturn(Optional.of(light));
 
-        LightService svc = new LightService(lightRepository, roomService, messageSource);
+        LightService svc = new LightService(lightRepository, roomService, messageSource, lockManager, eventPublisher);
         assertThat(svc.getLight(3L)).isEqualTo(light);
     }
 
@@ -84,12 +92,14 @@ class LightServiceTest {
         LightRepository lightRepository = Mockito.mock(LightRepository.class);
         com.smart.home.service.RoomService roomService = Mockito.mock(com.smart.home.service.RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        com.smart.home.service.LockManager lockManager = Mockito.mock(com.smart.home.service.LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Mockito.when(lightRepository.findById(999L)).thenReturn(Optional.empty());
         Mockito.when(messageSource.getMessage(Mockito.eq("light.not.found"), Mockito.any(Object[].class), Mockito.eq("light.not.found"), Mockito.any()))
                 .thenReturn("Light not found with id 999");
 
-        LightService svc = new LightService(lightRepository, roomService, messageSource);
+        LightService svc = new LightService(lightRepository, roomService, messageSource, lockManager, eventPublisher);
 
         assertThatThrownBy(() -> svc.getLight(999L))
                 .isInstanceOf(ResourceNotFoundException.class)
@@ -101,13 +111,16 @@ class LightServiceTest {
         LightRepository lightRepository = Mockito.mock(LightRepository.class);
         com.smart.home.service.RoomService roomService = Mockito.mock(com.smart.home.service.RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        com.smart.home.service.LockManager lockManager = Mockito.mock(com.smart.home.service.LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Hall");
         Light light = new Light("Chandelier", room);
         Mockito.when(lightRepository.findById(7L)).thenReturn(Optional.of(light));
         Mockito.when(lightRepository.save(Mockito.any(Light.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.eq(7L), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        LightService svc = new LightService(lightRepository, roomService, messageSource);
+        LightService svc = new LightService(lightRepository, roomService, messageSource, lockManager, eventPublisher);
         Light res = svc.turnOn(7L);
 
         assertThat(res.getPowerState()).isEqualTo(PowerState.ON);
@@ -119,6 +132,8 @@ class LightServiceTest {
         LightRepository lightRepository = Mockito.mock(LightRepository.class);
         com.smart.home.service.RoomService roomService = Mockito.mock(com.smart.home.service.RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        com.smart.home.service.LockManager lockManager = Mockito.mock(com.smart.home.service.LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Hall");
         Light light = new Light("Chandelier", room);
@@ -126,8 +141,9 @@ class LightServiceTest {
 
         Mockito.when(lightRepository.findById(8L)).thenReturn(Optional.of(light));
         Mockito.when(lightRepository.save(Mockito.any(Light.class))).thenAnswer(inv -> inv.getArgument(0));
+        Mockito.when(lockManager.executeWithLock(Mockito.eq(8L), Mockito.any())).thenAnswer(inv -> ((java.util.function.Supplier)inv.getArgument(1)).get());
 
-        LightService svc = new LightService(lightRepository, roomService, messageSource);
+        LightService svc = new LightService(lightRepository, roomService, messageSource, lockManager, eventPublisher);
         Light res = svc.turnOff(8L);
 
         assertThat(res.getPowerState()).isEqualTo(PowerState.OFF);
@@ -139,13 +155,15 @@ class LightServiceTest {
         LightRepository lightRepository = Mockito.mock(LightRepository.class);
         com.smart.home.service.RoomService roomService = Mockito.mock(com.smart.home.service.RoomService.class);
         MessageSource messageSource = Mockito.mock(MessageSource.class);
+        com.smart.home.service.LockManager lockManager = Mockito.mock(com.smart.home.service.LockManager.class);
+        org.springframework.context.ApplicationEventPublisher eventPublisher = Mockito.mock(org.springframework.context.ApplicationEventPublisher.class);
 
         Room room = new Room("Hall");
         Light light = new Light("Chandelier", room);
         Mockito.when(lightRepository.findById(8L)).thenReturn(Optional.of(light));
         Mockito.doNothing().when(lightRepository).delete(light);
 
-        LightService svc = new LightService(lightRepository, roomService, messageSource);
+        LightService svc = new LightService(lightRepository, roomService, messageSource, lockManager, eventPublisher);
         svc.deleteLight(8L);
 
         Mockito.verify(lightRepository).delete(light);

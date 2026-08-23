@@ -1,178 +1,59 @@
 package com.smart.home.service;
 
 import com.smart.home.domain.AirConditioner;
-import com.smart.home.domain.Room;
 import com.smart.home.dto.AirConditionerRequest;
 import com.smart.home.repository.AirConditionerRepository;
 import com.smart.home.validation.AirConditionerValidator;
-import com.smart.home.validation.RoomValidator;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.locks.ReentrantLock;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
-@RequiredArgsConstructor
 @Slf4j
-public class AirConditionerService {
+public class AirConditionerService extends AbstractApplianceService<AirConditioner> {
 
     private final AirConditionerRepository airConditionerRepository;
-    private final RoomService roomService;
-    private final MessageSource messageSource;
-    private final Map<Long, ReentrantLock> acLocks = new ConcurrentHashMap<>();
+
+    public AirConditionerService(
+            AirConditionerRepository airConditionerRepository,
+            RoomService roomService,
+            MessageSource messageSource,
+            LockManager lockManager,
+            ApplicationEventPublisher eventPublisher) {
+        super(airConditionerRepository, roomService, messageSource, lockManager, eventPublisher);
+        this.airConditionerRepository = airConditionerRepository;
+    }
 
     @Transactional
     public AirConditioner createAirConditioner(AirConditionerRequest request) {
-        Room room = roomService.getRoomById(request.roomId());
-        RoomValidator.validateRoomExists(room, request.roomId(), messageSource);
-        AirConditioner airConditioner = new AirConditioner(request.name(), room);
-        room.addAppliance(airConditioner);
-        log.info("Created air conditioner {} in room {}", airConditioner.getName(), room.getName());
-        return airConditionerRepository.save(airConditioner);
+        AirConditioner airConditioner = new AirConditioner(request.name(), roomService.getRoomById(request.roomId()));
+        return createAppliance(request.roomId(), request.name(), airConditioner);
     }
 
-    @Transactional(readOnly = true)
     public List<AirConditioner> getAllAirConditioners() {
-        return airConditionerRepository.findAll();
+        return getAllAppliances();
     }
 
-    @Transactional(readOnly = true)
     public List<AirConditioner> getAirConditionersByRoom(Long roomId) {
-        Room room = roomService.getRoomById(roomId);
-        RoomValidator.validateRoomExists(room, roomId, messageSource);
-        return airConditionerRepository.findByRoomId(roomId);
+        return getAppliancesByRoom(roomId);
     }
 
-    @Transactional(readOnly = true)
     public AirConditioner getAirConditioner(Long id) {
-        return getValidatedAirConditioner(id);
+        return getAppliance(id);
     }
 
-    @Transactional
-    public AirConditioner turnOn(Long id) {
-        AirConditioner airConditioner = getValidatedAirConditioner(id);
-
-        ReentrantLock lock = acLocks.computeIfAbsent(id, ignored -> new ReentrantLock());
-        lock.lock();
-        try {
-            airConditioner.turnOn();
-            return airConditionerRepository.save(airConditioner);
-        } finally {
-            lock.unlock();
-        }
-    }
-
-    @Transactional
-    public AirConditioner turnOnByRoom(Long roomId, Long airConditionerId) {
-        AirConditioner airConditioner = getValidatedAirConditioner(airConditionerId);
-        RoomValidator.validateRoomExists(roomService.getRoomById(roomId), roomId, messageSource);
-
-        RoomValidator.validateDeviceInRoom(roomId, airConditionerId, airConditioner.getRoom().getId(), messageSource);
-        ReentrantLock lock = acLocks.computeIfAbsent(airConditionerId, ignored -> new ReentrantLock());
-        lock.lock();
-        try {
-            airConditioner.turnOn();
-            return airConditionerRepository.save(airConditioner);
-        } finally {
-            lock.unlock();
-        }
-    }
-
-    @Transactional
-    public List<AirConditioner> turnOnAllByRoom(Long roomId) {
-        RoomValidator.validateRoomExists(roomService.getRoomById(roomId), roomId, messageSource);
-
-        List<AirConditioner> airConditioners = airConditionerRepository.findByRoomId(roomId);
-        for (AirConditioner airConditioner : airConditioners) {
-            ReentrantLock lock = acLocks.computeIfAbsent(airConditioner.getId(), ignored -> new ReentrantLock());
-            lock.lock();
-            try {
-                airConditioner.turnOn();
-                airConditionerRepository.save(airConditioner);
-            } finally {
-                lock.unlock();
-            }
-        }
-        return airConditioners;
-    }
-
-    @Transactional
-    public AirConditioner turnOffByRoom(Long roomId, Long airConditionerId) {
-        RoomValidator.validateRoomExists(roomService.getRoomById(roomId), roomId, messageSource);
-        AirConditioner airConditioner = getValidatedAirConditioner(airConditionerId);
-        RoomValidator.validateDeviceInRoom(roomId, airConditionerId, airConditioner.getRoom().getId(), messageSource);
-        ReentrantLock lock = acLocks.computeIfAbsent(airConditionerId, ignored -> new ReentrantLock());
-        lock.lock();
-        try {
-            airConditioner.turnOff();
-            return airConditionerRepository.save(airConditioner);
-        } finally {
-            lock.unlock();
-        }
-    }
-
-    @Transactional
-    public List<AirConditioner> turnOffAllByRoom(Long roomId) {
-        RoomValidator.validateRoomExists(roomService.getRoomById(roomId), roomId, messageSource);
-        List<AirConditioner> airConditioners = airConditionerRepository.findByRoomId(roomId);
-        for (AirConditioner airConditioner : airConditioners) {
-            ReentrantLock lock = acLocks.computeIfAbsent(airConditioner.getId(), ignored -> new ReentrantLock());
-            lock.lock();
-            try {
-                airConditioner.turnOff();
-                airConditionerRepository.save(airConditioner);
-            } finally {
-                lock.unlock();
-            }
-        }
-        return airConditioners;
-    }
-
-    @Transactional
-    public AirConditioner turnOff(Long id) {
-        AirConditioner airConditioner = getValidatedAirConditioner(id);
-        ReentrantLock lock = acLocks.computeIfAbsent(id, ignored -> new ReentrantLock());
-        lock.lock();
-        try {
-            airConditioner.turnOff();
-            return airConditionerRepository.save(airConditioner);
-        } finally {
-            lock.unlock();
-        }
-    }
-
-    @Transactional
-    public void shutdownAllAirConditioners() {
-        for (AirConditioner airConditioner : airConditionerRepository.findAll()) {
-            ReentrantLock lock = acLocks.computeIfAbsent(airConditioner.getId(), ignored -> new ReentrantLock());
-            lock.lock();
-            try {
-                airConditioner.turnOff();
-                airConditionerRepository.save(airConditioner);
-            } finally {
-                lock.unlock();
-            }
-        }
-    }
-
-    @Transactional
     public void deleteAirConditioner(Long airConditionerId) {
-        AirConditioner airConditioner = getValidatedAirConditioner(airConditionerId);
-        Room room = airConditioner.getRoom();
-        room.removeAppliance(airConditioner);
-        acLocks.remove(airConditionerId);
-        airConditionerRepository.delete(airConditioner);
-        log.info("Deleted air conditioner {} from room {}", airConditioner.getName(), room.getName());
+        deleteAppliance(airConditionerId);
     }
 
-    private AirConditioner getValidatedAirConditioner(Long id) {
-        AirConditioner airConditioner = airConditionerRepository.findById(id).orElse(null);
-        AirConditionerValidator.validateAirConditionerExists(airConditioner, id, messageSource);
+    @Override
+    protected AirConditioner getValidatedAppliance(Long applianceId) {
+        AirConditioner airConditioner = airConditionerRepository.findById(applianceId).orElse(null);
+        AirConditionerValidator.validateAirConditionerExists(airConditioner, applianceId, messageSource);
         return airConditioner;
     }
 }
