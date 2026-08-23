@@ -134,14 +134,21 @@ class LightServiceTest {
         assertThat(res.getSwitchPosition()).isEqualTo(Light.SwitchPosition.OFF);
     }
 
-    }
+    @Test
+    void deleteLightRemovesLight() {
+        LightRepository lightRepository = Mockito.mock(LightRepository.class);
+        com.smart.home.service.RoomService roomService = Mockito.mock(com.smart.home.service.RoomService.class);
+        MessageSource messageSource = Mockito.mock(MessageSource.class);
 
-        }
+        Room room = new Room("Hall");
+        Light light = new Light("Chandelier", room);
+        Mockito.when(lightRepository.findById(8L)).thenReturn(Optional.of(light));
+        Mockito.doNothing().when(lightRepository).delete(light);
 
-        @Override
-        public Room getRoomById(Long roomId) {
-            // tests override behavior via Mockito when needed; provide default
-            return new Room("StubRoom");
-        }
+        LightService svc = new LightService(lightRepository, roomService, messageSource);
+        svc.deleteLight(8L);
+
+        Mockito.verify(lightRepository).delete(light);
+        assertThat(room.getAppliances()).doesNotContain(light);
     }
 }

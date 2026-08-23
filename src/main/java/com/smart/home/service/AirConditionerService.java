@@ -160,6 +160,16 @@ public class AirConditionerService {
         }
     }
 
+    @Transactional
+    public void deleteAirConditioner(Long airConditionerId) {
+        AirConditioner airConditioner = getValidatedAirConditioner(airConditionerId);
+        Room room = airConditioner.getRoom();
+        room.removeAppliance(airConditioner);
+        acLocks.remove(airConditionerId);
+        airConditionerRepository.delete(airConditioner);
+        log.info("Deleted air conditioner {} from room {}", airConditioner.getName(), room.getName());
+    }
+
     private AirConditioner getValidatedAirConditioner(Long id) {
         AirConditioner airConditioner = airConditionerRepository.findById(id).orElse(null);
         AirConditionerValidator.validateAirConditionerExists(airConditioner, id, messageSource);

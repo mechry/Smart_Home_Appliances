@@ -470,3 +470,30 @@ insert into appliances (name,power_state,room_id,thermostat_mode,appliance_type,
 2026-08-22 13:31:11.589 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-08-22 13:31:11.591 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2026-08-22 13:31:11.596 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-08-22 22:28:21.994 INFO  [main] com.smart.home.SmartHomeApplication - Starting SmartHomeApplication using Java 21.0.12 with PID 3280 (C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\Smart_Home_Appliances)
+2026-08-22 22:28:21.998 INFO  [main] com.smart.home.SmartHomeApplication - No active profile set, falling back to 1 default profile: "default"
+2026-08-22 22:28:23.798 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-22 22:28:23.927 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 108 ms. Found 4 JPA repository interfaces.
+2026-08-22 22:28:25.345 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-22 22:28:25.368 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-22 22:28:25.369 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2026-08-22 22:28:25.476 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-08-22 22:28:25.476 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3399 ms
+2026-08-22 22:28:25.722 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-22 22:28:26.104 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:smart_home user=SA
+2026-08-22 22:28:26.109 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-22 22:28:26.130 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:smart_home'
+2026-08-22 22:28:26.526 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-22 22:28:26.665 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-08-22 22:28:26.743 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-08-22 22:28:27.360 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-22 22:28:29.622 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-22 22:28:29.747 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-22 22:28:31.816 INFO  [main] o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-08-22 22:28:31.974 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-08-22 22:28:32.011 INFO  [main] com.smart.home.SmartHomeApplication - Started SmartHomeApplication in 11.177 seconds (process running for 15.344)
+2026-08-22 22:37:20.278 INFO  [http-nio-8080-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-22 22:37:20.279 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-08-22 22:37:20.283 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-08-22 22:37:20.318 WARN  [http-nio-8080-exec-5] o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2026-08-22 22:37:34.896 INFO  [http-nio-8080-exec-7] com.smart.home.service.RoomService - Creating room with name Living Room

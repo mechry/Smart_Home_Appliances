@@ -156,6 +156,16 @@ public class LightService {
         }
     }
 
+    @Transactional
+    public void deleteLight(Long lightId) {
+        Light light = getValidatedLight(lightId);
+        Room room = light.getRoom();
+        room.removeAppliance(light);
+        lightLocks.remove(lightId);
+        lightRepository.delete(light);
+        log.info("Deleted light {} from room {}", light.getName(), room.getName());
+    }
+
     private Light getValidatedLight(Long lightId) {
         Light light = lightRepository.findById(lightId).orElse(null);
         LightValidator.validateLightExists(light, lightId, messageSource);

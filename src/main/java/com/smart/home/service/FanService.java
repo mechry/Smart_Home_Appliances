@@ -8,14 +8,12 @@ import com.smart.home.repository.FanRepository;
 import com.smart.home.validation.FanValidator;
 import com.smart.home.validation.RoomValidator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantLock;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -200,6 +198,16 @@ public class FanService {
                 lock.unlock();
             }
         }
+    }
+
+    @Transactional
+    public void deleteFan(Long fanId) {
+        Fan fan = getValidatedFan(fanId);
+        Room room = fan.getRoom();
+        room.removeAppliance(fan);
+        fanLocks.remove(fanId);
+        fanRepository.delete(fan);
+        log.info("Deleted fan {} from room {}", fan.getName(), room.getName());
     }
 
     private Fan getValidatedFan(Long fanId) {
