@@ -1,8 +1,10 @@
 package com.smart.home.event;
 
 import com.smart.home.domain.Appliance;
+import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 
+@Getter
 public class ApplianceStateChangedEvent extends ApplicationEvent {
 
     private final Long applianceId;
@@ -14,17 +16,5 @@ public class ApplianceStateChangedEvent extends ApplicationEvent {
         this.applianceId = appliance.getId();
         this.applianceType = appliance.getClass().getSimpleName();
         this.newState = newState;
-    }
-
-    public Long getApplianceId() {
-        return applianceId;
-    }
-
-    public String getApplianceType() {
-        return applianceType;
-    }
-
-    public String getNewState() {
-        return newState;
     }
 }
