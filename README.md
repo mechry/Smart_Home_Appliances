@@ -189,7 +189,7 @@ curl -X PUT http://localhost:8080/api/air-conditioners/1/on
 
 2. **Synchronous vs. Asynchronous operations**: All operations are synchronous. For a real smart home system, asynchronous event-driven architecture (e.g., message queues) might be more appropriate for device commands.
 
-3. **Validation location**: Validation occurs in both controllers (via annotations) and services (via custom validators). This provides defense in depth but duplicates some validation logic.
+3. **Validation location**: Validation occurs in both controllers (via annotations) and services (via custom validators). This provides defense in depth.
 
 4. **No API versioning**: The API has no versioning strategy. In production, versioning (e.g., `/api/v1/lights`) would be necessary for backward compatibility.
 
